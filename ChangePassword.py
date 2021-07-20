@@ -1,18 +1,6 @@
 import collections
 from difflib import SequenceMatcher
 
-#function to check whether the password doesn't have more than 4 repeat characters/numbers
-def countChars(newPwd):
-    newPwd = newPwd.lower()
-    d = collections.defaultdict(int)
-    for c in newPwd:
-        d[c] += 1
-    for c in d:
-        #print(c, d[c])
-        if(d[c] > 4):
-            return False
-    return True
-
 #function to check new password
 def checkNewPwd(s):
     print("Checking new password")
@@ -23,12 +11,16 @@ def checkNewPwd(s):
     specialchars=['!','@','#','$','&','*'] 
     spChar=0
     slen = len(s)
+    chars_count=False
+    newPwd_lower = s.lower()
+    d = collections.defaultdict(int)
     #checking whether password satisfies below req
     # atleast 1 upper, 1 lower, 1 number, 1 special char
     # no more than 4 special characters
     # 50% password is not number
     if(slen>=18):
         for c in s:
+            d[c]+=1
             if(c.isalnum()):
                 if c.isupper() and upper==0:
                     upper=1
@@ -49,8 +41,7 @@ def checkNewPwd(s):
                 return False
         
         #checking for not having more than 4 repeated characters
-        chars_count = countChars(s)
-        if(not(chars_count)):
+        if(max(d.values()) > 4):
             print("New password is invalid")
             return False
 

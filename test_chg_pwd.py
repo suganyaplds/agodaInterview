@@ -10,41 +10,42 @@ def test_chg_pwd_opw_invalid():
     assert result == False
 
 def test_chg_pwd_npw_invalid():
-    result=ChangePassword("password3","BentleyContinental1234%^")
+    result=ChangePassword("password1","BentleyContinental1234%^")
     assert result == False
 
 def test_chg_pwd_inv_len():
-    result=ChangePassword("password3","Bentley")
+    result=ChangePassword("password1","Bentley")
     assert result == False
 
 def test_chg_pwd_inv_noupper():
-    result=ChangePassword("password3","bentleycontinental")
+    result=ChangePassword("password1","bentleycontinental")
     assert result == False
 
 def test_chg_pwd_inv_nolower():
-    result=ChangePassword("password3","BENTLEYCONTINENTAL")
+    result=ChangePassword("password1","BENTLEYCONTINENTAL")
     assert result == False
 
 def test_chg_pwd_inv_nonumber():
-    result=ChangePassword("password3","BentleyContinental")
+    result=ChangePassword("password1","BentleyContinental")
     assert result == False
 
 def test_chg_pwd_inv_nospchar():
-    result=ChangePassword("password3","BentleyContinental12")
+    result=ChangePassword("password1","BentleyContinental12")
     assert result == False
 
 def test_chg_pwd_inv_spchar():
-    result=ChangePassword("password3","BentleyContinental12%*")
+    result=ChangePassword("password1","BentleyContinental12%*")
     assert result == False
 
 def test_chg_pwd_inv_50num():
-    result=ChangePassword("password3","Bentley12345678901!@#$")
+    result=ChangePassword("password1","Bentley12345678901!@#$")
     assert result == False
 
 def test_chg_pwd_inv_repchar():
-    result=ChangePassword("password3","BentleyConteenental!@#$")
+    result=ChangePassword("password1","BentleyConteenental!@#$")
     assert result == False
 
 def test_chg_pwd_inv_repnum():
-    result=ChangePassword("password3","11BentleyConteenental!@#$11")
+    result=ChangePassword("password1","111BentleyContenental!@#$11")
     assert result == False
+    

@@ -1,4 +1,5 @@
 import collections
+from difflib import SequenceMatcher
 
 #function to check whether the password doesn't have more than 4 repeat characters/numbers
 def countChars(newPwd):
@@ -68,9 +69,10 @@ def checkOldPwd(oldPwd, user):
     #print("old Password is "+oldPwd)
     username=user.lower()
     passwordsDB_dict={
-        "suganya" : "password1",
-        "raja" : "password2",
-        "ravi" : "password3"
+        "suganya" : "VolkswagenBeetle2021!",
+        "choachana" : "Choapassword1234!@#$",
+        "rachata" : "Rachatapassword12!@",
+        "natcha" : "NatchaPassword123!@"
     }
     print("Checking old password")
     if(passwordsDB_dict[username] == oldPwd):
@@ -82,7 +84,12 @@ def checkOldPwd(oldPwd, user):
 def ChangePassword(oldPassword, newPassword):
     if(checkOldPwd(oldPassword, "suganya")):
         #print("Old password is matching")
-        if(checkNewPwd(newPassword)):
+        similarity = SequenceMatcher(None, oldPassword, newPassword).ratio()
+        #print(similarity)
+        if(similarity>=0.8):
+            print("New Password is invalid")
+            return False
+        elif(checkNewPwd(newPassword)):
             print("New Password is valid")
             print("Can change old password to New password")
             return True

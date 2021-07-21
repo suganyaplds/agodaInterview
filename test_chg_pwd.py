@@ -73,6 +73,24 @@ def test_chg_pwd_inv_sim81():
     result=ChangePassword("VolkswagenBeetle2021!","VolkswagenBeabcd2021!")
     assert result == False
 
-def test_chg_pwd_valid_spstart():
+def test_chg_pwd_valid_startSP():
     result=ChangePassword("VolkswagenBeetle2021!","!@BentleyContinental12!!")
     assert result == True
+
+def test_chg_pwd_valid_manycaps():
+    result=ChangePassword("VolkswagenBeetle2021!","BENTLEYContinental12!!")
+    assert result == True
+
+def test_chg_pwd_valid_100char():
+    result=ChangePassword("VolkswagenBeetle2021!","abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12!!")
+    assert result == True
+
+def test_chg_pwd_inv_empty():
+    result=ChangePassword("VolkswagenBeetle2021!","")
+    assert result == False
+
+#spaces are not allowed as that will be considered as special character & 
+# not in the supported list
+def test_chg_pwd_inv_withspace():
+    result=ChangePassword("VolkswagenBeetle2021!","Bentley Continental 2021!!")
+    assert result == False
